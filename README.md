@@ -15,6 +15,7 @@ In the exhaustive pairing mode, the function will build a tree for each possible
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
 ```
 
 We load the data and separate it into a training set and a label set:
@@ -53,6 +54,8 @@ feat_pairs = np.concatenate((feat1.reshape(5,1), feat2.reshape(5,1)), axis = 1)
 Let us run through another example:
 
 ```
+from sklearn.datasets import load_breast_cancer
+
 bc = load_breast_cancer()
 bc_feat_names = bc.feature_names
 X = bc.data
