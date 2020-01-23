@@ -7,7 +7,7 @@ This is a function implementing a classification decision tree learning method t
 (Note) This function requires python 3.6 or higher. This tool is released with the required dependencies found in the venv folder.
 
 ## How to Use
-# Exhaustive Feature Pairing
+### Exhaustive Feature Pairing
 
 In the exhaustive pairing mode, the function will build a tree for each possible pairings of features/attributes found in your training data. Let us run through an example:
 
@@ -17,4 +17,26 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 ```
 
-# Selective Feature Pairing
+We load the data and separate it into a training set and a label set:
+
+```
+iris = load_iris()
+X = iris.data
+Y = iris.target
+```
+
+We then record the number of possible classes and their corresponding plot colors:
+
+```
+bc_feat_names = iris.feature_names
+nb_class = 3
+cols = "bry"
+```
+
+Finally, the function can be applied with the following command:
+
+```
+DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, exhaust = True)
+```
+
+### Selective Feature Pairing
