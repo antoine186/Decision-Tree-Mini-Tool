@@ -1,9 +1,20 @@
 # Decision Tree Mini Tool
 
-Make sure that PyQt5 is installed in your env.
+## Overview
 
-pip3 install PyQt5
+This is a function implementing a classification decision tree learning method to the training data. The resulting decision boundaries are plotted as a result.
 
-or 
+(Note) This function requires python 3.6 or higher. This tool is released with the required dependencies found in the venv folder.
 
-pip install PyQt5
+## How to Use
+# Exhaustive Feature Pairing
+
+In the exhaustive pairing mode, the function will build a tree for each possible pairings of features/attributes found in your training data. Let us run through an example:
+
+```
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier
+```
+
+# Selective Feature Pairing
