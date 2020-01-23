@@ -1,5 +1,6 @@
 import sklearn
 import numpy as np
+import random
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 
@@ -19,6 +20,11 @@ nb_combo = 3
 nb_class = 3
 cols = "bry"
 
+feat1 = np.array([1,3,5,8,5])
+feat2 = np.array([2,9,6,4,0])
+
+feat_pairs = np.concatenate((feat1.reshape(5,1), feat2.reshape(5,1)), axis = 1)
+
 DT_Func(X, bc_feat_names, Y, nb_combo, "entropy", nb_class, cols)
 
 # This classifying decision tree is meant for categorical target data
@@ -26,10 +32,10 @@ DT_Func(X, bc_feat_names, Y, nb_combo, "entropy", nb_class, cols)
 # Features must be the columns of the training data and the target must be a vector array containing as many instances as
 # there are rows in the training data
 
-# nb_combo is the number of different pairs of features one would like to try
+#
 
 # crit is the criterion for the decision tree
-def DT_Func(train_dt, feat_names, label_dt, nb_combo, crit, nb_class, cols, exhaust = False, plot_step = 0.02):
+def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols, feat_pairs = np.array([]), exhaust = False, plot_step = 0.02):
 
     # Count number of features present
     train_shape = train_dt.shape
@@ -79,6 +85,9 @@ def DT_Func(train_dt, feat_names, label_dt, nb_combo, crit, nb_class, cols, exha
 
         plt.show()
 
-    elif:
+    elif exhaust == False:
 
-        
+        for i in range(len(feat_pairs))
+
+
+
