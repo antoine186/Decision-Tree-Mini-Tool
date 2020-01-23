@@ -2,14 +2,24 @@ import sklearn
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
+
 from sklearn.datasets import load_breast_cancer
+from sklearn.datasets import load_iris
 
 bc = load_breast_cancer()
 bc_feat_names = bc.feature_names
 X = bc.data
 Y = bc.target
 
-DT_Func(X, bc_feat_names, Y, 3, "entropy", 3, )
+iris = load_iris()
+X = iris.data
+Y = iris.target
+bc_feat_names = iris.feature_names
+nb_combo = 3
+nb_class = 3
+cols = "bry"
+
+DT_Func(X, bc_feat_names, Y, nb_combo, "entropy", nb_class, cols)
 
 # This classifying decision tree is meant for binary target data
 
@@ -21,7 +31,8 @@ DT_Func(X, bc_feat_names, Y, 3, "entropy", 3, )
 # crit is the criterion for the decision tree
 def DT_Func(train_dt, feat_names, label_dt, nb_combo, crit, nb_class, cols,exhaust = False, plot_step = 0.02):
 
-    nb_features = train_dt.shape
+    train_shape = train_dt.shape
+    nb_features = train_shape[1]
 
     plt.figure()
     plt.rc('xtick', labelsize=8)
@@ -49,7 +60,6 @@ def DT_Func(train_dt, feat_names, label_dt, nb_combo, crit, nb_class, cols,exhau
             plt.axis("tight")
             # plot the training points
             for ii, color in zip(range(nb_class), cols):
-                print(color)
                 idx = np.where(y == ii)
                 plt.scatter(X[idx, 0], X[idx, 1], c=color, cmap=plt.cm.Paired)
             plt.axis("tight")
