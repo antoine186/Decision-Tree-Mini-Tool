@@ -87,10 +87,15 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
             pair = feat_pairs[q]
 
             X = train_dt[:, pair]
-            y = label_dt
+
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, label_dt, test_size=test_size, random_state=0)
 
             # Train a decision tree classifier using user specified criterion
-            clf = DecisionTreeClassifier(criterion=crit).fit(X, y)
+            clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+
+            print("Accuracy score for tree with attributes " + feat_names[pair[0]] + " & " + feat_names[pair[1]] +
+                  " is: " + str(clf.score(X_test, y_test)))
 
             # Plot the learned decision boundaries
             plt.plot()
@@ -110,7 +115,7 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
             # Superimpose the class colors of the training data according to their corresponding targets
             for ii, color in zip(range(nb_class), cols):
-                idx = np.where(y == ii)
+                idx = np.where(y_train == ii)
                 plt.scatter(X[idx, 0], X[idx, 1], c=color, cmap=plt.cm.Paired)
             plt.axis("tight")
 
