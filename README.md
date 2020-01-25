@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a function implementing a classification decision tree learning method to the training data. The resulting decision boundaries are plotted as a result.
+This is a function implementing a classification decision tree learning method to the training data.
 
 (Note) This function requires python 3.6 or higher. This tool is released with the required dependencies found in the venv folder.
 
@@ -64,4 +64,12 @@ nb_class = 2
 cols = "br"
 
 DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pairs = feat_pairs)
+```
+
+### Using all Attributes
+
+When using all the attributes, a decision tree will be built using all of the available features in the training set.
+
+```
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2)
 ```
