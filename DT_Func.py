@@ -3,13 +3,15 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
 
 # This classifying decision tree is meant for categorical target data
 
 # Features must be the columns of the training data and the target must be a vector array containing as many instances as
 # there are rows in the training data
 
-def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols, feat_pairs = np.array([]), exhaust = False, plot_step = 0.02):
+def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
+            test_size, feat_pairs = np.array([]), exhaust = False, plot_step = 0.02):
 
     # Count number of features present
     train_shape = train_dt.shape
@@ -31,10 +33,15 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols, feat_pairs = n
                 pair = [i, j]
 
                 X = train_dt[:, pair]
-                y = label_dt
+
+                X_train, X_test, y_train, y_test = train_test_split(
+                    X, label_dt, test_size = test_size, random_state = 0)
 
                 # Train a decision tree classifier using user specified criterion
-                clf = DecisionTreeClassifier(criterion=crit).fit(X, y)
+                clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+
+                print("Accuracy score for tree with attributes " + feat_names[pair[0]] + " & " + feat_names[pair[1]] +
+                      " is: " + str(clf.score(X_test, y_test)))
 
                 # Plot the learned decision boundaries
                 # plt.subplot(nb_features, nb_features, j * nb_features + i + 1)
@@ -49,14 +56,15 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols, feat_pairs = n
 
                 # Plot depths
                 cs = plt.contourf(xx, yy, Z, cmap=plt.cm.Paired)
+                plt.title('Training Data within 2D Feature Space')
                 plt.xlabel(feat_names[pair[0]], fontsize=8)
                 plt.ylabel(feat_names[pair[1]], fontsize=8)
                 plt.axis("tight")
 
                 # Superimpose the class colors of the training data according to their corresponding targets
                 for ii, color in zip(range(nb_class), cols):
-                    idx = np.where(y == ii)
-                    plt.scatter(X[idx, 0], X[idx, 1], c=color, cmap=plt.cm.Paired)
+                    idx = np.where(y_train == ii)
+                    plt.scatter(X_train[idx, 0], X_train[idx, 1], c=color, cmap=plt.cm.Paired)
                 plt.axis("tight")
 
         plt.show()
