@@ -92,3 +92,10 @@ Note: Below is a different version of this function with the cross validation op
 ```
 DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=10)
 ```
+
+### Using our own Custom Cross-Validation
+
+```
+mod = DecisionTreeClassifier(criterion = "entropy")
+res = smart_custom_fold(mod, X, Y, 5)
+```
