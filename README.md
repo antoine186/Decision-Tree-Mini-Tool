@@ -63,5 +63,5 @@ Y = bc.target
 nb_class = 2
 cols = "br"
 
-DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, feat_pairs = feat_pairs)
+DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pairs = feat_pairs)
 ```
