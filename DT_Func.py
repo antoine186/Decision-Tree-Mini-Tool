@@ -4,6 +4,8 @@ import random
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+from sklearn import metrics
 
 # This classifying decision tree is meant for categorical target data
 
@@ -11,7 +13,7 @@ from sklearn.model_selection import train_test_split
 # there are rows in the training data
 
 def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
-            test_size, feat_pairs = np.array([]), exhaust = False, plot_step = 0.02):
+            test_size, feat_pairs = np.array([]), exhaust = False, plot_step = 0.02, k_fold = 0):
 
     # Count number of features present
     train_shape = train_dt.shape
@@ -34,14 +36,37 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
                 X = train_dt[:, pair]
 
-                X_train, X_test, y_train, y_test = train_test_split(
-                    X, label_dt, test_size = test_size, random_state = 0)
+                if (k_fold == 0):
 
-                # Train a decision tree classifier using user specified criterion
-                clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+                    X_train, X_test, y_train, y_test = train_test_split(
+                        X, label_dt, test_size=test_size, random_state=None)
 
-                print("Accuracy score for tree with attributes " + feat_names[pair[0]] + " & " + feat_names[pair[1]] +
-                      " is: " + str(clf.score(X_test, y_test)))
+                    # Train a decision tree classifier using user specified criterion
+                    clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+
+                    print(
+                        "Accuracy score for tree built with attributes " + feat_names[pair[0]] + " & "
+                        + feat_names[pair[1]] + " is: " + str(clf.score(X_test, y_test)))
+
+                else:
+
+                    clf = DecisionTreeClassifier(criterion=crit)
+
+                    cv_scores = cross_val_score(clf, X, label_dt, cv = k_fold)
+
+                    print("Mean accuracy score for cross-validation tree with attributes " + feat_names[pair[0]] + " & "
+                          + feat_names[pair[1]] + " and " + str(k_fold) + "-fold(s)" + " is: " + str(cv_scores.mean()))
+                    print("The corresponding standard error is " + str(cv_scores.std()))
+
+                    X_train, X_test, y_train, y_test = train_test_split(
+                        X, label_dt, test_size=test_size, random_state=None)
+
+                    # Train a decision tree classifier using user specified criterion
+                    clf = clf.fit(X_train, y_train)
+
+                    print(
+                        "Accuracy score for tree built with attributes " + feat_names[pair[0]] + " & "
+                        + feat_names[pair[1]] + " is: " + str(clf.score(X_test, y_test)))
 
                 # Plot the learned decision boundaries
                 # plt.subplot(nb_features, nb_features, j * nb_features + i + 1)
@@ -88,14 +113,37 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
             X = train_dt[:, pair]
 
-            X_train, X_test, y_train, y_test = train_test_split(
-                X, label_dt, test_size=test_size, random_state=0)
+            if (k_fold == 0):
 
-            # Train a decision tree classifier using user specified criterion
-            clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+                X_train, X_test, y_train, y_test = train_test_split(
+                    X, label_dt, test_size=test_size, random_state=None)
 
-            print("Accuracy score for tree with attributes " + feat_names[pair[0]] + " & " + feat_names[pair[1]] +
-                  " is: " + str(clf.score(X_test, y_test)))
+                # Train a decision tree classifier using user specified criterion
+                clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+
+                print(
+                    "Accuracy score for tree built with attributes " + feat_names[pair[0]] + " & "
+                    + feat_names[pair[1]] + " is: " + str(clf.score(X_test, y_test)))
+
+            else:
+
+                clf = DecisionTreeClassifier(criterion=crit)
+
+                cv_scores = cross_val_score(clf, X, label_dt, cv=k_fold)
+
+                print("Mean accuracy score for cross-validation tree with attributes " + feat_names[pair[0]] + " & "
+                      + feat_names[pair[1]] + " and " + str(k_fold) + "-fold(s)" + " is: " + str(cv_scores.mean()))
+                print("The corresponding standard error is " + str(cv_scores.std()))
+
+                X_train, X_test, y_train, y_test = train_test_split(
+                    X, label_dt, test_size=test_size, random_state=None)
+
+                # Train a decision tree classifier using user specified criterion
+                clf = clf.fit(X_train, y_train)
+
+                print(
+                    "Accuracy score for tree built with attributes " + feat_names[pair[0]] + " & "
+                    + feat_names[pair[1]] + " is: " + str(clf.score(X_test, y_test)))
 
             # Plot the learned decision boundaries
             plt.plot()
@@ -121,18 +169,23 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
         plt.show()
 
+# This classifying decision tree is meant for categorical target data
+
+# Features must be the columns of the training data and the target must be a vector array containing as many instances as
+# there are rows in the training data
+
 def DT_Complete_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
             test_size, plot_step = 0.02):
 
     X_train, X_test, y_train, y_test = train_test_split(
-        train_dt, label_dt, test_size=test_size, random_state=0)
+        train_dt, label_dt, test_size=test_size, random_state=None)
 
     # Train a decision tree classifier using user specified criterion
     clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
 
     test_score = clf.score(X_test, y_test)
 
-    print("Accuracy score for tree with all attributes is " + str(test_score))
+    print("Accuracy score for tree built with all attributes is " + str(test_score))
 
     return(test_score)
 
