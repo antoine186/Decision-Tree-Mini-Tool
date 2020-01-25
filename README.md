@@ -40,6 +40,12 @@ Finally, the function can be applied with the following command:
 DT_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, exhaust = True)
 ```
 
+Note: Below is a different version of this function with the cross validation operation activated.
+
+```
+DT_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, exhaust = True, k_fold = 5)
+```
+
 ### Selective Feature Pairing
 
 In the selective pairing mode, the function will build a tree for each pairing designated by the user:
@@ -64,6 +70,13 @@ nb_class = 2
 cols = "br"
 
 DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pairs = feat_pairs)
+```
+
+Note: Below is a different version of this function with the cross validation operation activated.
+
+```
+
+DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pairs = feat_pairs, k_fold = 5)
 ```
 
 ### Using all Attributes
