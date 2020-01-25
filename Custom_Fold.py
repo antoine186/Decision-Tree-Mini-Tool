@@ -1,7 +1,7 @@
 from math import floor
 import numpy as np
 
-# This function is the implementation of a custom cross-validation operation. It does not work the best, and that is because
+# This function is the naive implementation of a custom cross-validation operation. It does not work the best, and that is because
 # only the base case has been implemented and the folds are not randomly sampled
 def custom_fold(mod, train_dt, label_dt, k_fold):
 
@@ -22,7 +22,8 @@ def custom_fold(mod, train_dt, label_dt, k_fold):
         fold_bounds[0] = 0
 
     else:
-        print("hi")
+        print("Your training set cannot be divided into equally sized folds")
+        return
 
     bound_ind = 0
     fold_bounds = fold_bounds.astype(int)
