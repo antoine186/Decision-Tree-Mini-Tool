@@ -77,7 +77,7 @@ DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pa
 
 ###### Exercise 4
 
-### We will run our own custom-built cross-validation function in order to compare results with the function from sklearn
+### We will run our own naive custom-built cross-validation function in order to compare results with the function from sklearn
 # This exercise uses the Iris dataset
 
 from sklearn.tree import DecisionTreeClassifier
@@ -90,6 +90,17 @@ print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: "
 
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
 
-# This is the second version of custom cross-validation function
+###### Exercise 5
 
-res1, res2 = smart_custom_fold(mod, X, Y, 5)
+### We will run our own smart custom-built cross-validation function in order to compare results with the function from sklearn
+# This exercise uses the Iris dataset
+
+from sklearn.tree import DecisionTreeClassifier
+
+mod = DecisionTreeClassifier(criterion = "entropy")
+res = smart_custom_fold(mod, X, Y, 5)
+
+print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
+print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
+
+DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
