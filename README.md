@@ -86,3 +86,9 @@ When using all the attributes, a decision tree will be built using all of the av
 ```
 DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2)
 ```
+
+Note: Below is a different version of this function with the cross validation operation activated.
+
+```
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=10)
+```
