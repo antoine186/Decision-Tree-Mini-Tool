@@ -3,6 +3,7 @@
 import numpy as np
 from DT_Func import DT_Func
 from DT_Func import DT_Complete_Func
+from Custom_Fold import custom_fold
 
 ###### Breast Cancer Import
 
@@ -72,3 +73,13 @@ DT_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, exhaust = 
 
 DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pairs = feat_pairs)
 DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pairs = feat_pairs, k_fold = 5)
+
+###### Exercise 4
+
+### We will run our own custom-built cross-validation function in order to compare results with the function from sklearn
+# This exercise uses the Iris dataset
+
+from sklearn.tree import DecisionTreeClassifier
+
+mod = DecisionTreeClassifier(criterion = "entropy")
+res = custom_fold(mod, X, Y, 5)
