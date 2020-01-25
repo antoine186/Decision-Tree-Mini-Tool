@@ -5,6 +5,8 @@ import numpy as np
 # only the base case has been implemented and the folds are not randomly sampled
 def custom_fold(mod, train_dt, label_dt, k_fold):
 
+    main_mod = mod
+
     train_len = len(train_dt)
     fold_len = floor(train_len/k_fold)
 
@@ -36,8 +38,10 @@ def custom_fold(mod, train_dt, label_dt, k_fold):
 
         bound_ind = bound_ind + 1
 
-        cur_mod = mod.fit(cur_trainfold, cur_trainlabel)
-        score_contain[i] = cur_mod.score(cur_testfold, cur_testlabel)
+        mod = main_mod
+
+        mod.fit(cur_trainfold, cur_trainlabel)
+        score_contain[i] = mod.score(cur_testfold, cur_testlabel)
 
     return(score_contain)
 
