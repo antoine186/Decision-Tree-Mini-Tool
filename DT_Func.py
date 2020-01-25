@@ -175,18 +175,42 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 # there are rows in the training data
 
 def DT_Complete_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
-            test_size, plot_step = 0.02):
+            test_size, plot_step = 0.02, k_fold = 0):
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        train_dt, label_dt, test_size=test_size, random_state=None)
+    if (k_fold == 0):
 
-    # Train a decision tree classifier using user specified criterion
-    clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+        X_train, X_test, y_train, y_test = train_test_split(
+            train_dt, label_dt, test_size=test_size, random_state=None)
 
-    test_score = clf.score(X_test, y_test)
+        # Train a decision tree classifier using user specified criterion
+        clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
 
-    print("Accuracy score for tree built with all attributes is " + str(test_score))
+        test_score = clf.score(X_test, y_test)
 
-    return(test_score)
+        print("Accuracy score for tree built with all attributes is " + str(test_score))
+
+        return (test_score)
+
+    else:
+
+        clf = DecisionTreeClassifier(criterion=crit)
+
+        cv_scores = cross_val_score(clf, train_dt, label_dt, cv=k_fold)
+
+        print("Mean accuracy score for cross-validation tree with " + str(k_fold) + "-fold(s)"
+              + " is: " + str(cv_scores.mean()))
+        print("The corresponding standard error is " + str(cv_scores.std()))
+
+        X_train, X_test, y_train, y_test = train_test_split(
+            train_dt, label_dt, test_size=test_size, random_state=None)
+
+        # Train a decision tree classifier using user specified criterion
+        clf = clf.fit(X_train, y_train)
+
+        test_score = clf.score(X_test, y_test)
+
+        print("Accuracy score for tree built with all attributes is " + str(test_score))
+
+        return (test_score)
 
 

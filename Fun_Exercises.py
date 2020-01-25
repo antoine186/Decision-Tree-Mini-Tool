@@ -55,6 +55,8 @@ non_cross_val_SD = np.std(non_cross_val_scores)
 print("Accuracy mean for decision tree fittings is " + str(non_cross_val_mean))
 print("The corresponding standard error is " + str(non_cross_val_SD))
 
+cross_val_score = DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=10)
+
 ###### Exercise 2
 
 ### We will fit both a non-cross-validated and cross-validated tree to the iris dataset and observe the difference in
