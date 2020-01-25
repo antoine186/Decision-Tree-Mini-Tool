@@ -1,4 +1,4 @@
-# Decision Tree Mini Tool
+# Decision Tree Tool
 
 ## Overview
 
