@@ -37,7 +37,7 @@ cols = "bry"
 Finally, the function can be applied with the following command:
 
 ```
-DT_Func(X, feat_names, Y, "entropy", nb_class, cols, exhaust = True)
+DT_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, exhaust = True)
 ```
 
 ### Selective Feature Pairing
