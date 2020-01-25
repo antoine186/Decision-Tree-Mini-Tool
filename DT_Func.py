@@ -121,5 +121,19 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
         plt.show()
 
+def DT_Complete_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
+            test_size, plot_step = 0.02):
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        train_dt, label_dt, test_size=test_size, random_state=0)
+
+    # Train a decision tree classifier using user specified criterion
+    clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+
+    test_score = clf.score(X_test, y_test)
+
+    print("Accuracy score for tree with all attributes is " + str(test_score))
+
+    return(test_score)
 
 
