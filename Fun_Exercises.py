@@ -86,7 +86,7 @@ mod = DecisionTreeClassifier(criterion = "entropy")
 res = custom_fold(mod, X, Y, 5)
 
 print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
-print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
+print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
 
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
 
@@ -101,6 +101,6 @@ mod = DecisionTreeClassifier(criterion = "entropy")
 res = smart_custom_fold(mod, X, Y, 5)
 
 print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
-print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
+print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
 
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
