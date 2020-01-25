@@ -1,6 +1,8 @@
 from math import floor
 import numpy as np
 
+# This function is the implementation of a custom cross-validation operation. It does not work the best, and that is because
+# only the base case has been implemented and the folds are not randomly sampled
 def custom_fold(mod, train_dt, label_dt, k_fold):
 
     train_len = len(train_dt)
