@@ -4,6 +4,7 @@ import numpy as np
 from DT_Func import DT_Func
 from DT_Func import DT_Complete_Func
 from Custom_Fold import custom_fold
+from Smart_Custom_Fold import smart_custom_fold
 
 ###### Breast Cancer Import
 
@@ -88,3 +89,7 @@ print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: "
 print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
 
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
+
+# This is the second version of custom cross-validation function
+
+res1, res2 = smart_custom_fold(mod, X, Y, 5)
