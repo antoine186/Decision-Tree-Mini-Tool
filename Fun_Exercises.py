@@ -88,6 +88,8 @@ res = custom_fold(mod, X, Y, 5)
 print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
 print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
 
+print("-------")
+
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
 
 ###### Exercise 5
@@ -100,6 +102,8 @@ res = smart_custom_fold(mod, X, Y, 5)
 
 print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
 print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
+
+print("-------")
 
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
 
@@ -131,3 +135,8 @@ print("--------")
 DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold = 5)
 print("--------")
 DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold = 5, dichom = True)
+
+# We will also test our own custom-built confusion matrix function using the Cancer dataset within the custom cross_val function
+# call
+
+

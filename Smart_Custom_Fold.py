@@ -32,7 +32,7 @@ def smart_custom_fold(mod, train_dt, label_dt, k_fold, dichom = False):
     fold_bounds = fold_bounds.astype(int)
 
     score_contain = np.zeros(k_fold)
-    metrics_contain = np.zeros(k_fold, 3)
+    metrics_contain = np.zeros((k_fold, 3))
 
     for i in range(k_fold):
         cur_test_indices = np.asarray(global_indices[fold_bounds[bound_ind]:fold_bounds[bound_ind + 1]])
