@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
-from sklearn import metrics
+from Confuse_Mat import compute_confuse
 
 # This classifying decision tree is meant for categorical target data
 
@@ -175,7 +175,7 @@ def DT_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 # there are rows in the training data
 
 def DT_Complete_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
-            test_size, plot_step = 0.02, k_fold = 0):
+            test_size, plot_step = 0.02, k_fold = 0, dichom = False):
 
     if (k_fold == 0):
 
@@ -184,6 +184,14 @@ def DT_Complete_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
         # Train a decision tree classifier using user specified criterion
         clf = DecisionTreeClassifier(criterion=crit).fit(X_train, y_train)
+
+        if (dichom == True):
+
+            confuse_mat, unique_classes, precision_score, recall_score, f1_score \
+                = compute_confuse(clf, X_test, y_test, nb_class, dichom = dichom)
+
+        else:
+            confuse_mat, unique_classes = compute_confuse(clf, X_test, y_test, nb_class)
 
         test_score = clf.score(X_test, y_test)
 
@@ -206,6 +214,14 @@ def DT_Complete_Func(train_dt, feat_names, label_dt, crit, nb_class, cols,
 
         # Train a decision tree classifier using user specified criterion
         clf = clf.fit(X_train, y_train)
+
+        if (dichom == True):
+
+            confuse_mat, unique_classes, precision_score, recall_score, f1_score \
+                = compute_confuse(clf, X_test, y_test, nb_class, dichom = dichom)
+
+        else:
+            confuse_mat, unique_classes = compute_confuse(clf, X_test, y_test, nb_class)
 
         test_score = clf.score(X_test, y_test)
 

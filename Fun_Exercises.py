@@ -6,6 +6,7 @@ from DT_Func import DT_Complete_Func
 from Custom_Fold import custom_fold
 from Smart_Custom_Fold import smart_custom_fold
 from sklearn.tree import DecisionTreeClassifier
+from Confuse_Mat import compute_confuse
 
 ###### Breast Cancer Import
 
@@ -101,3 +102,32 @@ print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: "
 print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
 
 DT_Complete_Func(X, feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=5)
+
+###### Exercise 6
+
+# We will test our own custom-built confusion matrix function using the Cancer dataset
+
+from Confuse_Mat import compute_confuse
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+                        X, Y, test_size=0.2, random_state=None)
+
+# Train a decision tree classifier using user specified criterion
+clf = DecisionTreeClassifier(criterion="entropy").fit(X_train, y_train)
+
+mat, classes = compute_confuse(clf, X_test, y_test, nb_class)
+
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2)
+
+###### Exercise 7
+
+# We will test our own custom-built confusion matrix function using the Cancer dataset within the DT_Complete_Func function
+# call
+
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2)
+print("--------")
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, dichom = True)
+print("--------")
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold = 5)
+print("--------")
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold = 5, dichom = True)

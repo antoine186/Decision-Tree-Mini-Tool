@@ -1,8 +1,9 @@
 from math import floor
 from random import sample
 import numpy as np
+from Confuse_Mat import compute_confuse
 
-def smart_custom_fold(mod, train_dt, label_dt, k_fold):
+def smart_custom_fold(mod, train_dt, label_dt, k_fold, dichom = False):
 
     main_mod = mod
 
@@ -25,12 +26,13 @@ def smart_custom_fold(mod, train_dt, label_dt, k_fold):
 
     else:
 
-        print("Under construction")
+        print("No equally sized folds can be found in your data!")
 
     bound_ind = 0
     fold_bounds = fold_bounds.astype(int)
 
     score_contain = np.zeros(k_fold)
+    metrics_contain = np.zeros(k_fold, 3)
 
     for i in range(k_fold):
         cur_test_indices = np.asarray(global_indices[fold_bounds[bound_ind]:fold_bounds[bound_ind + 1]])
@@ -48,6 +50,23 @@ def smart_custom_fold(mod, train_dt, label_dt, k_fold):
 
         mod.fit(cur_trainfold, cur_trainlabel)
         score_contain[i] = mod.score(cur_testfold, cur_testlabel)
+
+        if (dichom == True):
+
+            confuse_mat, unique_classes, precision_score, recall_score, f1_score \
+                = compute_confuse(mod, cur_testfold, cur_testlabel, nb_class = 2, dichom=dichom)
+
+            metrics_contain[i, 0] = precision_score
+            metrics_contain[i, 1] = recall_score
+            metrics_contain[i, 2] = f1_score
+
+    if (dichom == True):
+        print("Mean precision across all folds is: " + str(np.mean(metrics_contain[:, 0])))
+        print("SD of precision across all folds is: " + str(np.std(metrics_contain[:, 0])))
+        print("Mean recall across all folds is: " + str(np.mean(metrics_contain[:, 1])))
+        print("SD of recall across all folds is: " + str(np.std(metrics_contain[:, 1])))
+        print("Mean f1 score across all folds is: " + str(np.mean(metrics_contain[:, 2])))
+        print("SD of f1 score across all folds is: " + str(np.std(metrics_contain[:, 2])))
 
     return (score_contain)
 
