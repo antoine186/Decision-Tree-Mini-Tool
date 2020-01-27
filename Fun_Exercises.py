@@ -139,4 +139,10 @@ DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2
 # We will also test our own custom-built confusion matrix function using the Cancer dataset within the custom cross_val function
 # call
 
+X = X[0:565,:]
 
+mod = DecisionTreeClassifier(criterion = "entropy")
+res = smart_custom_fold(mod, X, Y, 5, dichom = True)
+
+print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
+print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))

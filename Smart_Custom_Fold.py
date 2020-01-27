@@ -26,7 +26,7 @@ def smart_custom_fold(mod, train_dt, label_dt, k_fold, dichom = False):
 
     else:
 
-        print("No equally sized folds can be found in your data!")
+        raise Exception('Your input data of length {} is not divisible into equally sized {} folds'.format(len(train_dt), k_fold))
 
     bound_ind = 0
     fold_bounds = fold_bounds.astype(int)
