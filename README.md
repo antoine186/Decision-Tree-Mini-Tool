@@ -84,13 +84,13 @@ DT_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, feat_pa
 When using all the attributes, a decision tree will be built using all of the available features in the training set.
 
 ```
-DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2)
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, dichom = True)
 ```
 
 Note: Below is a different version of this function with the cross validation operation activated.
 
 ```
-DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=10)
+DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2, k_fold=10, dichom = True)
 ```
 
 ### Using our own Custom Cross-Validation
