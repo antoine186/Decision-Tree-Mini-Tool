@@ -99,3 +99,11 @@ DT_Complete_Func(X, bc_feat_names, Y, "entropy", nb_class, cols, test_size = 0.2
 mod = DecisionTreeClassifier(criterion = "entropy")
 res = smart_custom_fold(mod, X, Y, 5)
 ```
+
+We can run the alternative command below if we are dealing with only 2 output categories and would like more performance information:
+
+```
+mod = DecisionTreeClassifier(criterion = "entropy")
+res = smart_custom_fold(mod, X, Y, 5, dichom = True)
+```
+
