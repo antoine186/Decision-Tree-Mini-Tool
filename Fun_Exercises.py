@@ -146,3 +146,20 @@ res = smart_custom_fold(mod, X, Y, 5, dichom = True)
 
 print("Mean accuracy score for custom cross-validation tree with 5-fold(s) is: " + str(np.mean(res)))
 print("Corresponding SD for custom cross-validation tree with 5-fold(s) is: " + str(np.std(res)))
+
+###### Exercise 8
+
+# Attempting to train a k-nearest neighbour classifier in order to compute a ROC curve using the Cancer dataset
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+                        X, Y, test_size=0.2, random_state=None)
+
+my_neigh = KNeighborsClassifier(n_neighbors=5)
+my_neigh = my_neigh.fit(X_train, y_train)
+
+conf_res = compute_confuse(my_neigh, X_test, y_test, nb_class, dichom = True, proba = True, thresh = 0.5)
+
+
+

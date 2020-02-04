@@ -1,13 +1,48 @@
 import numpy as np
 
-def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False):
+# This is a custom confusion matrix function. It can handle cases with multiple labels and cases with only true/false
+# labels. For the latter, it can also compute the recall, precision, and f1 score.
+
+# For dichom = True, please ensure that your labels are converted to 0 and 1s. 0 being a negative and 1 being a positive.
+def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False, proba = False, thresh = 0.5):
 
     confuse_mat = np.zeros((nb_class, nb_class))
 
     unique_class = np.unique(label_dt)
 
+    if (dichom == True):
+
+        if (unique_class[0] != 0):
+            raise Exception('Your target data is not in the right form of 0s and 1s.')
+
+        if (len(unique_class) > 2):
+            raise Exception('Your target data is not in the right form. It is too long.')
+
+        false_where = np.where(unique_class == 0)
+        false_where = false_where[0][0]
+        true_where = 1 - false_where
+
     for i in range(len(test_dt)):
-        cur_pred = mod.predict(np.array(test_dt[i,:].reshape(1, -1)))
+
+        if (dichom == True):
+
+            if (proba == False):
+
+                cur_pred = mod.predict(np.array(test_dt[i, :].reshape(1, -1)))
+
+            else:
+
+                cur_preds = mod.predict_proba(np.array(test_dt[i, :].reshape(1, -1)))
+
+                if (cur_preds[0, true_where] > thresh):
+                    cur_pred = 1
+
+                else:
+                    cur_pred = 0
+
+        else:
+
+            cur_pred = mod.predict(np.array(test_dt[i, :].reshape(1, -1)))
 
         if (cur_pred == label_dt[i]):
 
@@ -39,10 +74,6 @@ def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False):
     print("Note: The columns represent actual labels while the rows represent predicted labels.")
 
     if (dichom == True):
-
-        false_where = np.where(unique_class == 0)
-        false_where = false_where[0][0]
-        true_where = 1 - false_where
 
         precision_score = confuse_mat[true_where, true_where] / (confuse_mat[true_where, true_where] + confuse_mat[true_where, false_where])
         recall_score = confuse_mat[true_where, true_where] / (confuse_mat[true_where, true_where] + confuse_mat[false_where, true_where])
