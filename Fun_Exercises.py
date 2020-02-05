@@ -163,6 +163,20 @@ my_neigh = my_neigh.fit(X_train, y_train)
 ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100)
 ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100, smooth_factor = 15, spline = True)
 
+###### Exercise 9
+
+# Validating our custom cross validation method by applying them to a k-nearest neighbour classifier using the Cancer
+# dataset
+
+from sklearn.neighbors import KNeighborsClassifier
+
+X = X[0:565,:]
+Y = Y[0:565]
+
+my_neigh = KNeighborsClassifier(n_neighbors=5)
+
+res = smart_custom_fold(my_neigh, X, Y, 5, dichom = True)
+
 
 
 
