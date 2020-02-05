@@ -160,7 +160,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 my_neigh = KNeighborsClassifier(n_neighbors=5)
 my_neigh = my_neigh.fit(X_train, y_train)
 
-lol = ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100)
+ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100)
 
 
 

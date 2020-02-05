@@ -37,6 +37,7 @@ def ROC_comp(mod, test_dt, label_dt, nb_class, roc_steps):
 
     sys.stdout = sys.__stdout__
 
-    simple_scatter(roc_rates, "True Positive Rate (Sensitivity)", "False Positive Rate (100 - Specificity)", "ROC Curve")
+    simple_scatter(roc_rates, "True Positive Rate (Sensitivity)", "False Positive Rate (100 - Specificity)", "ROC Curve",
+                   spline = True)
 
-    return roc_rates
+    return

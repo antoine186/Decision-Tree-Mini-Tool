@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1627221a-81cf-4f35-8774-e6ec5fd40598" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ROC_Comp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simple_Scatter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Confuse_Mat.py" beforeDir="false" afterPath="$PROJECT_DIR$/Confuse_Mat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fun_Exercises.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fun_Exercises.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROC_Comp.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROC_Comp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simple_Scatter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simple_Scatter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Fun_Exercises.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="157" column="43" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
+            <state relative-caret-position="695">
+              <caret line="162" selection-start-line="162" selection-end-line="162" />
               <folding>
                 <element signature="e#23#41#0" expanded="true" />
               </folding>
@@ -31,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Confuse_Mat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
+            <state>
+              <caret selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -40,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ROC_Comp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state relative-caret-position="600">
+              <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -52,8 +51,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Simple_Scatter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="285">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,9 +90,9 @@
         <option value="$PROJECT_DIR$/Custom_Fold.py" />
         <option value="$PROJECT_DIR$/DT_Func.py" />
         <option value="$PROJECT_DIR$/Smart_Custom_Fold.py" />
+        <option value="$PROJECT_DIR$/Confuse_Mat.py" />
         <option value="$PROJECT_DIR$/Simple_Scatter.py" />
         <option value="$PROJECT_DIR$/ROC_Comp.py" />
-        <option value="$PROJECT_DIR$/Confuse_Mat.py" />
         <option value="$PROJECT_DIR$/Fun_Exercises.py" />
       </list>
     </option>
@@ -203,7 +205,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3295964" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3295964" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.3295964" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3295964" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -243,34 +245,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Confuse_Mat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Simple_Scatter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ROC_Comp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        <state relative-caret-position="600">
+          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Confuse_Mat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Fun_Exercises.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="157" column="43" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
+        <state relative-caret-position="695">
+          <caret line="162" selection-start-line="162" selection-end-line="162" />
           <folding>
             <element signature="e#23#41#0" expanded="true" />
           </folding>
