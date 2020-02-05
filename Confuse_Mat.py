@@ -4,7 +4,7 @@ import numpy as np
 # labels. For the latter, it can also compute the recall, precision, and f1 score.
 
 # For dichom = True, please ensure that your labels are converted to 0 and 1s. 0 being a negative and 1 being a positive.
-def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False, proba = False, thresh = 0.5):
+def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False, proba = False, thresh = 0.5, roc_comp = False):
 
     confuse_mat = np.zeros((nb_class, nb_class))
 
@@ -32,13 +32,27 @@ def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False, proba = Fa
 
             else:
 
+                if (thresh > 1 or thresh < 0):
+
+                    raise Exception("Inappropriate threshold value")
+
                 cur_preds = mod.predict_proba(np.array(test_dt[i, :].reshape(1, -1)))
 
-                if (cur_preds[0, true_where] > thresh):
-                    cur_pred = 1
+                if (thresh < 0.5):
+
+                    if (cur_preds[0, true_where] >= thresh):
+                        cur_pred = 1
+
+                    else:
+                        cur_pred = 0
 
                 else:
-                    cur_pred = 0
+
+                    if (cur_preds[0, true_where] > thresh):
+                        cur_pred = 1
+
+                    else:
+                        cur_pred = 0
 
         else:
 
@@ -75,12 +89,41 @@ def compute_confuse(mod, test_dt, label_dt, nb_class, dichom = False, proba = Fa
 
     if (dichom == True):
 
-        precision_score = confuse_mat[true_where, true_where] / (confuse_mat[true_where, true_where] + confuse_mat[true_where, false_where])
-        recall_score = confuse_mat[true_where, true_where] / (confuse_mat[true_where, true_where] + confuse_mat[false_where, true_where])
+        if ((confuse_mat[true_where, true_where] + confuse_mat[true_where, false_where]) == 0):
 
-        f1_score = 2 * ((precision_score * recall_score) / (precision_score + recall_score))
+            precision_score = 0
+            recall_score = 0
 
-        return confuse_mat, unique_class, precision_score, recall_score, f1_score
+            f1_score = 0
+
+        elif((confuse_mat[true_where, true_where] + confuse_mat[false_where, true_where]) == 0):
+
+            precision_score = 0
+            recall_score = 0
+
+            f1_score = 0
+
+        else:
+
+            precision_score = confuse_mat[true_where, true_where] / (
+                        confuse_mat[true_where, true_where] + confuse_mat[true_where, false_where])
+            recall_score = confuse_mat[true_where, true_where] / (
+                        confuse_mat[true_where, true_where] + confuse_mat[false_where, true_where])
+
+            f1_score = 2 * ((precision_score * recall_score) / (precision_score + recall_score))
+
+        if (roc_comp == False):
+
+            return confuse_mat, unique_class, precision_score, recall_score, f1_score
+
+        else:
+
+            true_pos = confuse_mat[true_where, true_where]
+            false_pos = confuse_mat[true_where, false_where]
+            true_neg = confuse_mat[false_where, false_where]
+            false_neg = confuse_mat[false_where, true_where]
+
+            return true_pos, false_pos, true_neg, false_neg
 
     else:
 

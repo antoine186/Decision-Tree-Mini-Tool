@@ -6,6 +6,7 @@ from DT_Func import DT_Complete_Func
 from Custom_Fold import custom_fold
 from Smart_Custom_Fold import smart_custom_fold
 from sklearn.tree import DecisionTreeClassifier
+from ROC_Comp import ROC_comp
 from Confuse_Mat import compute_confuse
 
 ###### Breast Cancer Import
@@ -159,7 +160,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 my_neigh = KNeighborsClassifier(n_neighbors=5)
 my_neigh = my_neigh.fit(X_train, y_train)
 
-conf_res = compute_confuse(my_neigh, X_test, y_test, nb_class, dichom = True, proba = True, thresh = 0.5)
+lol = ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100)
 
 
 
