@@ -129,5 +129,22 @@ It is also possible to use the function in a probabilistic manner:
 conf_res = compute_confuse(my_neigh, X_test, y_test, nb_class, dichom = True, proba = True, thresh = 0.5)
 ```
 
+### Using our own Custom ROC Curve Plotter
+
+We can plot a ROC curve to evaluate the performance of our K-nearest neighbour classifier model:
+
+```
+ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100)
+```
+
+There is an alternative command, which allows us to plot a curve instead of points (Note: do not run this command straight after the previous command; This seems to cause strange problems):
+
+```
+ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100, smooth_factor = 15, spline = True)
+```
+
+
+
+
 
 
