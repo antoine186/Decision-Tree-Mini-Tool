@@ -4,7 +4,7 @@ import sys
 from Confuse_Mat import compute_confuse
 from Simple_Scatter import simple_scatter
 
-def ROC_comp(mod, test_dt, label_dt, nb_class, roc_steps):
+def ROC_comp(mod, test_dt, label_dt, nb_class, roc_steps, smooth_factor = 15, spline = False):
 
     roc_rates = np.zeros((roc_steps + 1, 2))
 
@@ -38,6 +38,6 @@ def ROC_comp(mod, test_dt, label_dt, nb_class, roc_steps):
     sys.stdout = sys.__stdout__
 
     simple_scatter(roc_rates, "True Positive Rate (Sensitivity)", "False Positive Rate (100 - Specificity)", "ROC Curve",
-                   spline = True)
+                   smooth_factor = smooth_factor, spline = spline)
 
     return

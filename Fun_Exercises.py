@@ -161,6 +161,9 @@ my_neigh = KNeighborsClassifier(n_neighbors=5)
 my_neigh = my_neigh.fit(X_train, y_train)
 
 ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100)
+ROC_comp(my_neigh, X_test, y_test, nb_class, roc_steps = 100, smooth_factor = 15, spline = True)
+
+
 
 
 
