@@ -4,7 +4,7 @@
 
 This is a function implementing a classification decision tree learning method to the training data.
 
-(Note) This function requires Python 3.6 or higher. This tool is released with the required dependencies found in the venv folder.
+(Note) This function requires Python 3.6.
 
 ## How to Use
 ### Exhaustive Feature Pairing
